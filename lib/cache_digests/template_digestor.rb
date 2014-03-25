@@ -64,7 +64,7 @@ module CacheDigests
       end
 
       def dependency_digest
-        template_digests = dependencies.collect do |template_name|
+        template_digests = dependencies.select{|template_name| template_name != name}.collect do |template_name|
           TemplateDigestor.digest(template_name, format, finder, partial: true)
         end
 
